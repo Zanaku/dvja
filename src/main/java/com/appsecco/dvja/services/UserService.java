@@ -3,14 +3,12 @@ package com.appsecco.dvja.services;
 import com.appsecco.dvja.models.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Transactional
@@ -60,18 +58,6 @@ public class UserService {
     }
 
     public User findByLogin(String login) {
-        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.login = :login").
-                setParameter("login", login).
-                setMaxResults(1);
-        List<User> resultList = query.getResultList();
-
-        if(resultList.size() > 0)
-            return resultList.get(0);
-        else
-            return null;
-    }
-
-    public User findByLoginUnsafe(String login) {
         Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.login = '" + login + "'");
         List<User> resultList = query.getResultList();
 

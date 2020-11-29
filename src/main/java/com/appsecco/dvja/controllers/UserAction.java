@@ -106,7 +106,7 @@ public class UserAction extends BaseController {
             return INPUT;
 
         try {
-            user = userService.findByLoginUnsafe(getLogin());
+            user = userService.findByLogin(getLogin());
             if(user == null) {
                 addFieldError("login", "User not found by login: " + getLogin());
                 return INPUT;
