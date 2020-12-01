@@ -42,6 +42,7 @@ public class PingAction extends BaseController {
 
     private void doExecCommand() throws IOException {
         Runtime runtime = Runtime.getRuntime();
+        //TODO Swap cmd.exe for relevant command runner for your OS if not on Windows
         String[] command ={
                 "cmd.exe",
                 "/c echo This is a very safe operation From: " + getAddress()
